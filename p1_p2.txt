@@ -1,0 +1,22 @@
+# Declarative language with pattern match compatible clause
+# Clause can have guards with the key-word "when" and logical expressions on them
+# Function clause return the evaluation of the last expresion
+
+min3(A, B, C) when (A < B) and (A < C) ->
+    A;
+min3(A, B, C) when (B < A) and (B < C) ->
+    B;
+min3(A, B, C) when (C < A) and (C < B) ->
+    C.
+
+max3(A, B, C) when (A > B) and (A > C) ->
+    A;
+max3(A, B, C) when (B > A) and (B > C) ->
+    B;
+max3(A, B, C) when (C > A) and (C > B) ->
+    C.
+
+gcd(A, 0) ->
+    A;
+gcd(A, B) ->
+    gcd(B, A % B).

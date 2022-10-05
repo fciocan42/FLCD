@@ -2,7 +2,9 @@
 # Clause can have guards with the key-word "when" and logical expressions on them
 # Function clause return the evaluation of the last expresion
 
-hd([H | T]) ->
+# Here an syntactic error was added
+# - must be -> to start a function block of expressions
+hd([H | T]) -
     H.
 
 sum_list(List) ->

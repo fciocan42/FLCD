@@ -1,0 +1,36 @@
+Alphabet:
+a. Upper (A-Z) and lower case letters (a-z) of the English alphabet
+b. Underline character '_';
+c. Decimal digits (0-9);
+
+Data types:
+1. number:
+    noconst:="+"no|"-"no|no
+    no:=digit{no}
+2. atom
+    atom:='letter'|{letter|digit}
+
+User-defined Data Type:
+
+1. record
+    record = field|{field}
+    field = atom":"number
+
+Lexic:
+
+a.Special symbols, representing:
+    - operators
+        + - * / % < <= == >= > = | and or
+    - separators
+        { }  () [] ; , . space ->
+    - reserved words
+        fun define case of end when read write
+
+b.identifiers
+  -a sequence of letters and  digits, such that the first character is a letter; the rule is:
+    identifier ::= letter | letter{letter}{digit}
+    letter ::= "A" | "B" | ...| "Z" | "a" | "b" | ... | "z"
+    digit ::= "0" | "1" |...| "9"
+
+c.constants
+    atoms are constant literals

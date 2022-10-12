@@ -1,0 +1,13 @@
+decllist ::= declaration | declaration "," decllist
+declaration ::= IDENTIFIER "=" value
+stmtlist ::= stmt | stmt "," stmtlist
+stmt ::= simplstmt | structstmt
+simplstmt ::= assignstmt | iostmt
+assignstmt ::= IDENTIFIER "=" expression
+expression ::= expression operator term | term
+term ::= atom | number
+structstmt ::= caseofstmt
+iostmt ::= "read" | "write" "(" IDENTIFIER ")"
+casestmt ::= case expression of {pattern "->" stmtlist ";"} pattern "->" stmtlist "end" "."
+condition ::= expression RELATION expression
+RELATION ::= "<" | "<=" | "==" | ">=" | ">"

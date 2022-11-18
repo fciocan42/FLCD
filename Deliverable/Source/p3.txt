@@ -1,0 +1,34 @@
+sum_list(List) ->
+    sum_list(List, 0).
+
+sum_list([], Sum) ->
+    Sum;
+sum_list([H | T], Sum) ->
+    sum_list(T, Sum + H).
+
+
+min(A, B) when A < B ->
+    A;
+min(A, B) when B < A ->
+    B;
+
+min_list(List) ->
+    min_list(List, hd(List)).
+
+min_list([], Min) ->
+    Min;
+min_list([H | T], Min) ->
+    min_list(T, min(H, Min)).
+
+max(A, B) when A < B ->
+    A;
+max(A, B) when B < A ->
+    B;
+
+max_list(List) ->
+    max_list(List, hd(List)).
+
+max_list([], Max) ->
+    max;
+max_list([H | T], Max) ->
+    max_list(T, max(H, Max)).

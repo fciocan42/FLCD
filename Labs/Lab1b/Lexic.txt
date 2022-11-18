@@ -20,9 +20,9 @@ Lexic:
 
 a.Special symbols, representing:
     - operators
-        + - * / % < <= == >= > = | and or
+        + - * / % < <= == >= > = | and or ->
     - separators
-        { }  () [] ; , . space ->
+        { }  () [] ; , . space enter
     - reserved words
         fun define case of end when read write
 

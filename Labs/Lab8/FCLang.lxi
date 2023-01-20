@@ -1,0 +1,63 @@
+%{
+#include <math.h>
+
+int line = 1;
+%}
+
+%option noyywrap
+%option caseless
+
+CIFRA_ZEC	[0-9]
+NR_BAZA10	{CIFRA_ZEC}+
+EXPON		(E|e)("+"?|"-"){CIFRA_ZEC}{1,2}
+NR_REAL		{NR_BAZA10}"."{NR_BAZA10}{EXPON}?
+
+CARACTER	"'"[^\n]"'"
+SIR_CAR		["][^\n"]*["]
+
+LITERA		[A-Za-z_]
+IDENTIFICATOR	{LITERA}({LITERA}|{CIFRA_ZEC})*
+
+DELIMIT     [;.,()]|"["|"]"|"{"|"}"
+OPERATOR	[+*/%<>=]|"<="|">="|"=="|"-"|"and"|"or"|"->"|"|"
+
+COMENT		(#)({LITERA}|{CIFRA_ZEC})*
+
+
+
+%%
+
+[ \t]       {}
+[\n]        {line++;}
+
+{COMENT}    {}
+"#".*       {}
+
+"fun"|"define"|"case"|"of"|"end"|"when"|"read"|"write"  {printf( "Reserved word: %s\n", yytext);}
+{DELIMIT}   {printf( "Separator: %s\n", yytext);}
+{OPERATOR}  {printf( "Operator: %s\n", yytext);}
+
+{IDENTIFICATOR}	{printf( "Identifier: %s\n", yytext);}
+
+{NR_BAZA10}	{printf("INTeger: %s (%d)\n", yytext, atoi( yytext ));}
+{NR_REAL}	{printf("Float: %s (%g)\n", yytext, atof( yytext ));}
+
+{CARACTER}	{printf( "Char: %s\n", yytext);}
+{SIR_CAR}	{printf( "String: %s\n", yytext);}
+
+.           {printf("ERROR text=%s line=%d\n", yytext, line); return 1;}
+
+
+%%
+main( argc, argv )
+int argc;
+char **argv;
+{
+    ++argv, --argc; /* skip over program name */
+    if ( argc > 0 )
+    yyin = fopen( argv[0], "r" );
+    else
+     yyin = stdin;
+    yylex();
+}
+

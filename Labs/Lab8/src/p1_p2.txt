@@ -1,0 +1,9 @@
+start;
+# comentariul tau
+A = 5;
+B = 6;
+C = 7;
+
+SumAB = A + B;
+Sum = SumAB + C;
+write Sum

@@ -1,0 +1,31 @@
+program = statement_list
+statement = declaration_statement | assignment_statement | io_statement | conditional_statement | while_statement
+statement_list = statement | statement statement_list
+variable = identifier | identifier "[" number "]"
+primitive_type = "int" | "char" | "string" | "bool"
+primitive_declaration = primitive_type identifier ";"
+array_type = "array"
+array_nested_type = primitive_type | array_declaration
+array_declaration = array_type "[" array_nested_type "]" ";"
+declaration_statement = primitive_declaration | array_declaration
+assignment_statement = variable "=" expression ";"
+io_keyword = "read" | "print"
+string_or_var = string_const | variable
+io_statement = io_keyword "(" string_or_var ")" ";"
+if_statement = "if" "(" condition ")" "{" statement_list "}"
+else_statement = "else" "{" statement_list "}"
+conditional_statement = if_statement | if_statement else_statement
+while_statement = "while" "(" condition ")" "{" loop_statement_list "}"
+break_statement = "break" ";"
+continue_statement = "continue" ";"
+loop_statement = break_statement | continue_statement | statement
+loop_statement_list = loop_statement | loop_statement loop_statement_list
+compare_sign = "<" | "<=" | "==" | "=/=" | "=>" | ">"
+compare_expression = expression compare_sign expression
+condition_term = boolean_constant | compare_expression
+condition_chain_operator = "&&" | "||"
+condition = "(" condition_term condition_chain_operator condition ")" | condition_term condition_chain_operator condition
+multiplicative_operator = "*" | "/" | "%"
+expression = term | expression sign term
+term = factor | term multiplicative_operator factor
+factor = identifier | number | "(" expression ")"
